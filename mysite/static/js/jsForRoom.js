@@ -8,10 +8,12 @@ const roomName = JSON.parse(document.getElementById('room-name').textContent);
             + '/'
         );
 
-        chatSocket.onmessage = function(e) {
+      chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
             document.querySelector('#chat-log').value += (data.message + '\n');
         };
+
+//        событие, обрабатывающее все получаемые сообщения
 
         chatSocket.onclose = function(e) {
             console.error('Chat socket closed unexpectedly');
