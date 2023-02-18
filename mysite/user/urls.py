@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from .views import (
-    ProfileAPIList, ProfileAPIUpdate, ProfileAPIDelete, UserUpAPIList, UserAPIList
+    ProfileAPIList, ProfileAPIDetail
 )
 from rest_framework import routers
 
@@ -10,11 +10,7 @@ from rest_framework import routers
 # print(router.urls)
 
 urlpatterns = [
-    path('profile/', ProfileAPIList.as_view()),
-    path('profile/<int:pk>/', ProfileAPIUpdate.as_view()),
-    path('profile/<int:pk>/delete/', ProfileAPIDelete.as_view()),
-    path('userlist/', UserAPIList.as_view()),
-    path('userlist/<int:pk>/', UserUpAPIList.as_view()),
-    path('drf-auth/', include('rest_framework.urls')),
+    path('profiles/', ProfileAPIList.as_view(), name='profiles'),
+    path('profiles/<int:pk>/', ProfileAPIDetail.as_view(), name='profile'),
 
 ]

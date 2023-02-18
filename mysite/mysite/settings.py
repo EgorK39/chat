@@ -180,5 +180,6 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
 }
+LOGIN_REDIRECT_URL = 'user:profiles'

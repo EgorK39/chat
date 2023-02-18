@@ -21,7 +21,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('chat/', include('chat.urls')),
-    path('api/v1/', include('rest_framework.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('api/v2/', include(('user.urls', 'user'), namespace='user')),
     path('api/v2/auth/', include('djoser.urls')),
     re_path(r'^auth/', include('djoser.urls.authtoken')),

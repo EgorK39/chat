@@ -1,9 +1,11 @@
 from rest_framework import serializers
-from .models import UserModel, User
+from .models import UserModel
+from django.contrib.auth.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+class UserListSerializer(serializers.ModelSerializer):
+    # user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    user = serializers.SlugRelatedField(slug_field='username', read_only=True)
 
     class Meta:
         model = UserModel
@@ -14,13 +16,17 @@ class UserSerializer(serializers.ModelSerializer):
         ]
 
 
-class UserUserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(slug_field='username', read_only=True)
+
     class Meta:
-        model = User
+        model = UserModel
         fields = [
-            'username',
+            'user',
+            'photo',
+            'about',
         ]
-#
+
 # class UserSerializer(serializers.ModelSerializer):
 #     user = serializers.CharField()
 #     photo = serializers.ImageField()
